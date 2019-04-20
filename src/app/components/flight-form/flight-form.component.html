@@ -1,0 +1,47 @@
+<form [formGroup] ="service.form" class="flight-form" (submit)="onSubmit()">
+  <div style="margin-left: 5px;">
+    <mat-radio-group formControlName="tripType">
+      <mat-radio-button value="1">Round-trip</mat-radio-button>
+      <mat-radio-button value="2">One Way</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-grid-list cols="2" rowHeight="300px">
+
+    <mat-grid-tile>
+      <div class ="controles-container">
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="origin" placeholder="From">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input formControlName="departureDate" matInput [matDatepicker]="picker" placeholder="Departure Date" [min] = "getTodayDate()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="passengers">
+            <mat-option value="0">1 Passenger</mat-option>
+            <mat-option value="1">2 Passengers</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class ="controles-container">
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="destination" placeholder="To">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input formControlName="returnDate" matInput [matDatepicker]="pickerTo" placeholder="Return Date" [disabled]="service.form.get('tripType').value == '2'" [min] = "service.form.get('departureDate').value">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="promoCode" placeholder="Promo Code">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="button-row">
+    <button type="button" class="btn btn-primary" type="submit">View Flights</button>
+  </div>
+</form>

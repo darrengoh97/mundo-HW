@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem; margin-bottom: 20px; padding: 5px">
+  <img class="card-img-top" src="{{flight.routeCoverImage}}" alt="">
+  <div class="card-body">
+    <h2 class="card-title">
+      {{flight.origin}}-{{flight.destination}}
+    </h2>
+    <p class="card-text">Fares as low as ${{flight.priceUSD}}</p>
+    <button type="button" class="btn btn-primary" (click)= "onView(flight)">View Deal</button>
+  </div>
+</div>

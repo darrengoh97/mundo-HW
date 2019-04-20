@@ -1,0 +1,1 @@
+Run npm install to install packages before running the local host.
